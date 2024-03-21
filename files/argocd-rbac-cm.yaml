@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+data:
+  policy.default: role:readonly
+  policy.csv: |
+    p, role:test-role, applications, *, */*, allow
+    p, role:test-role, projects, *, *, allow
+    g, leixiao, role:test-role
