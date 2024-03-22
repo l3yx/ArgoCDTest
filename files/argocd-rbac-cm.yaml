@@ -2,10 +2,24 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-rbac-cm
-  namespace: argocd
+  namespace: mynamespace
 data:
   policy.default: role:readonly
   policy.csv: |
     p, role:test-role, applications, *, */*, allow
     p, role:test-role, projects, *, *, allow
     g, leixiao, role:test-role
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  ui.bannercontent: "Hello there!"
+  ui.bannerurl: "https://argoproj.github.io"
+  ui.bannerpermanent: "true"
+  ui.bannerposition: "bottom"
